@@ -1,0 +1,46 @@
+.search-bar {
+
+    margin: 10px auto;
+    width: 20%;
+    height: 50%;
+    border-radius: 30%;
+    flex: 5;
+
+}
+
+.search-input {
+    margin: 0 auto;
+}
+
+.profile_pic {
+
+    width: 200px; 
+    height: 200px;
+    border: black solid;
+
+}
+
+.repofilter {
+    margin: 10px;
+}
+
+.small_pic {
+
+    width: 25px; 
+    height: 25px;
+
+}
+
+.public_repo {
+
+    background-color: lightgreen;
+    color: white;
+
+}
+
+.private_repo {
+
+    background-color: crimson;
+    color: white;
+
+}

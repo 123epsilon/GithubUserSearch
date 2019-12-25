@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="./Git/git.css">
+    </head>
+    <body>
+        <div ng-controller="GitController">
+            <div class="search-bar">  
+                Search:              
+                <input class="search-input" type="text" ng-model="search" ng-model-options="{ debounce: 800 }">    
+            </div>    
+            <div class="display">    
+                <div style="text-align: center;">
+                    <a target="_blank" ng-href="{{info.html_url}}">
+                        <img class="profile_pic" ng-src="{{info.avatar_url}}"/>
+                    </a>
+                    <div class="bio-container">
+                        <p>Bio: "{{info.bio}}"</p>
+                    </div>
+                </div>                                
+                <div class="repo-info-container">
+                    <h2 style="text-align: center;">{{info.login}}</h2>
+                    <h4>Repos:</h4>
+                    <div class="repo-filter-container">
+                        Filter by 
+                        <div class="repofilter">Name: <input type="text" ng-model="repoName"></div>
+                        <div class="repofilter">Owner: <input type="text" ng-model="repoOwner"></div>
+                        <div class="repofilter">Description: <input type="text" ng-model="repoDesc"></div>
+                        <div class="repofilter">Language: <input type="text" ng-model="repoLang"></div>
+                    </div>                       
+                    <ul ng-repeat="repo in repos">
+                        <li ng-class="{public_repo: !repo.private, private_repo: repo.private}" ng-if="repo.name.toLowerCase().includes(repoName.toLowerCase()) && repo.owner.login.toLowerCase().includes(repoOwner.toLowerCase()) && (repo.description.toLowerCase().includes(repoDesc.toLowerCase()) || (repo.description===null && repoDesc==='')) && repo.language.toLowerCase().includes(repoLang.toLowerCase())">
+                            <p style="font-size: 18px;">
+                                Name: <a target="_blank" ng-href="{{repo.html_url}}">{{repo.name}}</a>
+                            </p>
+                            <p>
+                                Owner: {{repo.owner.login}}
+                                <a target="_blank" style="margin-left: 10px;" ng-href="{{repo.owner.html_url}}">
+                                    <img class="small_pic" ng-src="{{repo.owner.avatar_url}}">
+                                </a>
+                            </p>
+                            <p>Description: {{repo.description}}</p>
+                            <p>Language: {{repo.language}}</p>
+                            <p ng-if="repo.private">Private</p>
+                            <p ng-if="!repo.private">Public</p>
+                        </li>                       
+                    </ul>
+                </div>
+            </div>            
+        </div>
+    </body>
+</html>
